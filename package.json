@@ -1,0 +1,59 @@
+{
+  "name": "rc-here-maps",
+  "version": "1.0.0",
+  "description": "React wrapper for Here Maps API",
+  "main": "./dist/here-maps.min.js",
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react-app": "^3.1.2",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "0.28.7",
+    "eslint": "^5.4.0",
+    "eslint-loader": "1.9.0",
+    "file-loader": "1.1.5",
+    "jest": "^20.0.3",
+    "marked": "^0.3.19",
+    "node-sass": "^4.9.3",
+    "paths": "^0.1.1",
+    "postcss-flexbugs-fixes": "3.2.0",
+    "postcss-loader": "2.0.8",
+    "prettier": "^1.12.1",
+    "react": "^16.0.0-0",
+    "react-dev-utils": "^5.0.1",
+    "react-dom": "^16.0.0-0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "0.19.0",
+    "url-loader": "0.6.2",
+    "webpack": "3.8.1"
+  },
+  "scripts": {
+    "test": "npm run test",
+    "build": "webpack --config config/webpack.prod.js",
+    "format": "prettier \"{src}/**/*.js\" --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://hentrymartin@bitbucket.org/sixtgoorange/com.sixt.web.react.components.git"
+  },
+  "keywords": [
+    "react",
+    "components"
+  ],
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "author": "hentry.martin",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/sixtgoorange/com.sixt.web.react.components#readme"
+}
