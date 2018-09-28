@@ -1,12 +1,17 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import * as ReactDOMServer from 'react-dom/server';
+import PropTypes from 'prop-types';
 import { isEmpty } from './../Utils';
 import './../HereMaps.scss';
 
-class Marker extends PureComponent {
+class Marker extends Component {
   constructor(props) {
     super(props);
     this.marker = null;
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.lat !== prevProps.lat || this.props.lng !== prevProps.lng) this.updatePosition();
   }
 
   getDomMarkerIcon = html => {
@@ -14,15 +19,14 @@ class Marker extends PureComponent {
   };
 
   createMarker = () => {
-    console.log(this.marker, 'createMarker');
     if (this.marker) map.removeObject(this.marker);
     const { map, children, lat, lng } = this.props;
 
     const htmlEl = ReactDOMServer.renderToStaticMarkup(<div className="rc-marker">{children}</div>);
     const icon = this.getDomMarkerIcon(htmlEl);
     const marker = new window.H.map.DomMarker({ lat, lng }, { icon });
-    console.log(marker, 'marker created');
     map.addObject(marker);
+    this.props.onMarkerCreated(marker);
     this.marker = marker;
   };
 
@@ -31,6 +35,13 @@ class Marker extends PureComponent {
     const htmlEl = ReactDOMServer.renderToStaticMarkup(<div className="rc-marker">{children}</div>);
     const icon = this.getDomMarkerIcon(htmlEl);
     this.marker.setIcon(icon);
+  };
+
+  updatePosition = () => {
+    this.marker.setPosition({
+      lat: this.props.lat,
+      lng: this.props.lng,
+    });
   };
 
   render() {
@@ -43,5 +54,17 @@ class Marker extends PureComponent {
     return null;
   }
 }
+
+Marker.defaultProps = {
+  lat: 0,
+  lng: 0,
+  onMarkerCreated: () => {},
+};
+
+Marker.propTypes = {
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
+  onMarkerCreated: () => {},
+};
 
 export default Marker;

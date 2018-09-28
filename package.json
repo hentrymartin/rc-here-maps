@@ -1,6 +1,6 @@
 {
-  "name": "rc-here-maps",
-  "version": "1.0.0",
+  "name": "rc-here-map",
+  "version": "0.0.1",
   "description": "React wrapper for Here Maps API",
   "main": "./dist/here-maps.min.js",
   "dependencies": {
@@ -35,15 +35,19 @@
   "scripts": {
     "test": "npm run test",
     "build": "webpack --config config/webpack.prod.js",
+    "watch": "webpack --watch --config config/webpack.dev.js",
     "format": "prettier \"{src}/**/*.js\" --write"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://hentrymartin@bitbucket.org/sixtgoorange/com.sixt.web.react.components.git"
+    "url": "https://github.com/hentrymartin/rc-here-maps"
   },
   "keywords": [
-    "react",
-    "components"
+    "Here Maps",
+    "Maps",
+    "React",
+    "Wrapper",
+    "Components"
   ],
   "babel": {
     "presets": [
