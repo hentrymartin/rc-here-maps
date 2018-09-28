@@ -10,8 +10,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './../dist'),
-    filename: 'rc.min.js',
-    library: '@sixtrdindia/rc',
+    filename: 'here-maps.min.js',
+    library: 'rc-here-maps',
     libraryTarget: 'commonjs2'
   },
   externals: {
