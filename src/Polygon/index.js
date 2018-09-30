@@ -1,31 +1,69 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from './../Utils';
+import { isEmpty, isEqual } from './../Utils';
 
-export function Polygon(props) {
-  let polygon = null;
+class Polygon extends Component {
+  constructor(props) {
+    super(props);
+    this.polygon = null;
+  }
 
-  const getLineString = () => {
-    return new window.H.geo.LineString(props.dataPoints, 'values lat lng alt');
+  componentDidUpdate(prevProps) {
+    if (this.polygon) {
+      // update the polygon if the data points differ
+      if (!isEqual(prevProps.dataPoints, this.props.dataPoints)) this.updatePolygon();
+    }
+  }
+
+  componentWillUnmount() {
+    // Remove the polygon from the map once the component is going
+    // to be unmounted
+    const { map } = this.props;
+    map.removeObject(this.polygon);
+  }
+
+  /*
+  * Get the polygon geometry
+  */
+  getGeometry = dataPoints => {
+    return new window.H.geo.Polygon(new window.H.geo.LineString(dataPoints, 'lat lng alt'));
   };
 
-  const createPolygon = () => {
-    const lineString = getLineString();
-    const { map, fillColor, strokeColor, lineWidth } = props;
-    polygon = new window.H.map.Polygon(lineString, {
+  /*
+  * Creates the polygon for the first time
+  */
+  createPolygon = () => {
+    const { map, fillColor, strokeColor, lineWidth, dataPoints } = this.props;
+    const geometry = this.getGeometry(dataPoints);
+    this.polygon = new window.H.map.Polygon(geometry, {
       style: {
         fillColor,
         strokeColor,
         lineWidth,
       },
     });
-    props.onPolygonDrawn(polygon);
-    map.addObject(polygon);
+    this.props.onPolygonDrawn(this.polygon);
+    map.addObject(this.polygon);
   };
 
-  const { map } = props;
-  if (!isEmpty(map) && !polygon) createPolygon();
+  /*
+  * Update the polygon if the geometry changes
+  */
+  updatePolygon = () => {
+    const { dataPoints } = this.props;
 
-  return null;
+    const geometry = this.getGeometry(dataPoints);
+    this.polygon.setGeometry(geometry);
+  };
+
+  render() {
+    const { map } = this.props;
+    if (!isEmpty(map) && !this.polygon) {
+      this.createPolygon();
+    }
+
+    return null;
+  }
 }
 
 Polygon.defaultProps = {

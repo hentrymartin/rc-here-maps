@@ -1,19 +1,52 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from './../Utils';
+import { isEmpty, isEqual } from './../Utils';
 
-export function Polyline(props) {
-  let polygon = null;
+class Polyline extends Component {
+  constructor(props) {
+    super(props);
+    this.polyline = null;
+  }
 
-  const getLineString = () => {
-    return new window.H.geo.LineString(props.dataPoints, 'values lat lng alt');
+  componentDidUpdate(prevProps) {
+    if (this.polyline) {
+      // update the polyline if the data points differ
+      if (!isEqual(prevProps.dataPoints, this.props.dataPoints)) this.updatePolyline();
+    }
+  }
+
+  componentWillUnmount() {
+    // Remove the polyline from the map once the component is going
+    // to be unmounted
+    const { map } = this.props;
+    map.removeObject(this.polyline);
+  }
+
+  /*
+  * Update the geometry if its changed
+  */
+  updatePolyline = () => {
+    const { dataPoints } = this.props;
+
+    const geometry = this.getGeometry(dataPoints);
+    this.polyline.setGeometry(geometry);
   };
 
-  const createPolyline = () => {
-    const lineString = getLineString();
-    const { map, fillColor, strokeColor, lineWidth, miterLength, lineDash, lineDashOffset } = props;
-    polygon = new window.H.map.Polyline(lineString, {
+  /*
+  * Get the linestring geometry
+  */
+  getGeometry = () => {
+    return new window.H.geo.LineString(this.props.dataPoints, 'lat lng alt');
+  };
+
+  /*
+  * Create the polyline on the map for the first time
+  */
+  createPolyline = () => {
+    const geometry = this.getGeometry();
+    const { map, fillColor, strokeColor, lineWidth, miterLength, lineDash, lineDashOffset } = this.props;
+    this.polyline = new window.H.map.Polyline(geometry, {
       style: {
-        fillColor,
         strokeColor,
         lineWidth,
         miterLength,
@@ -21,19 +54,19 @@ export function Polyline(props) {
         lineDashOffset,
       },
     });
-    props.onPolylineDrawn(polygon);
-    map.addObject(polygon);
+    this.props.onPolylineDrawn(this.polyline);
+    map.addObject(this.polyline);
   };
 
-  const { map } = props;
-  if (!isEmpty(map) && !polygon) createPolyline();
-
-  return null;
+  render() {
+    const { map } = this.props;
+    if (!isEmpty(map) && !this.polyline) this.createPolyline();
+    return null;
+  }
 }
 
 Polyline.defaultProps = {
   dataPoints: [],
-  fillColor: '#FFFFCC',
   strokeColor: '#829',
   lineWidth: 2,
   miterLength: 10,

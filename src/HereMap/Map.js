@@ -20,11 +20,8 @@ class Map extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log('should component update');
     if (this.state.map) {
       // If the center is changed then update the map center
-
-      console.log(this.props.center, nextProps.center);
       if (!isEqual(this.props.center, nextProps.center)) this.updateCenter(nextProps.center);
 
       // If the bounds are changed then update the bounds
@@ -72,7 +69,6 @@ class Map extends Component {
 
   updateCenter = center => {
     if (isEmpty(center)) return;
-    console.log('updating centers', center);
     this.state.map.setCenter(center);
   };
 

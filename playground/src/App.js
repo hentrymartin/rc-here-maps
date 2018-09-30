@@ -13,6 +13,11 @@ class App extends Component {
         lat: 20.5937,
         lng: 78.9629,
       },
+      polygonDataPoints: [12, 3, 100, 29, 13, 100, 20, 30, 100],
+      polylineDataPoints: [10, 3, 100, 25, 13, 100, 10, 30, 100],
+      showPolygon: true,
+      showMarker: true,
+      showPolyline: true,
     };
   }
 
@@ -26,6 +31,10 @@ class App extends Component {
         lat: coords.lat,
         lng: coords.lng,
         center: coords,
+        polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
+        showPolygon: false,
+        showMarker: true,
+        showPolyline: false,
       });
     }, 1000);
   }
@@ -39,9 +48,15 @@ class App extends Component {
           useHTTPS={false}
           center={this.state.center}
         >
-          <Marker lat={this.state.lat} lng={this.state.lng}>
-            Sample marker
-          </Marker>
+          {this.state.showMarker && (
+            <Marker lat={this.state.lat} lng={this.state.lng}>
+              Sample marker
+            </Marker>
+          )}
+
+          {this.state.showPolygon && <Polygon dataPoints={this.state.polygonDataPoints} />}
+
+          {this.state.showPolyline && <Polyline dataPoints={this.state.polylineDataPoints} />}
         </HereMap>
       </div>
     );

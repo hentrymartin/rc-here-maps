@@ -14,6 +14,11 @@ class Marker extends Component {
     if (this.props.lat !== prevProps.lat || this.props.lng !== prevProps.lng) this.updatePosition();
   }
 
+  componentWillUnmount() {
+    const { map } = this.props;
+    map.removeObject(this.marker);
+  }
+
   getDomMarkerIcon = html => {
     return new window.H.map.DomIcon(html);
   };
