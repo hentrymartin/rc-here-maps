@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HereMap, Marker, Polygon, Polyline } from './../node_modules/rc-here-maps';
+import { HereMap, Marker, Polygon, Polyline, Circle } from './../node_modules/rc-here-maps';
 import './App.css';
 
 class App extends Component {
@@ -13,11 +13,16 @@ class App extends Component {
         lat: 20.5937,
         lng: 78.9629,
       },
+      circleCenter: {
+        lat: 11,
+        lng: 8,
+      },
       polygonDataPoints: [12, 3, 100, 29, 13, 100, 20, 30, 100],
       polylineDataPoints: [10, 3, 100, 25, 13, 100, 10, 30, 100],
       showPolygon: true,
       showMarker: true,
       showPolyline: true,
+      showCircle: true,
     };
   }
 
@@ -31,10 +36,12 @@ class App extends Component {
         lat: coords.lat,
         lng: coords.lng,
         center: coords,
+        circleCenter: coords,
         polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
         showPolygon: false,
-        showMarker: true,
+        showMarker: false,
         showPolyline: false,
+        showCircle: true,
       });
     }, 1000);
   }
@@ -49,7 +56,7 @@ class App extends Component {
           center={this.state.center}
         >
           {this.state.showMarker && (
-            <Marker lat={this.state.lat} lng={this.state.lng}>
+            <Marker lat={this.state.lat} lng={this.state.lng} draggable>
               Sample marker
             </Marker>
           )}
@@ -57,6 +64,8 @@ class App extends Component {
           {this.state.showPolygon && <Polygon dataPoints={this.state.polygonDataPoints} />}
 
           {this.state.showPolyline && <Polyline dataPoints={this.state.polylineDataPoints} />}
+
+          {this.state.showCircle && <Circle center={this.state.circleCenter} radius={100000} />}
         </HereMap>
       </div>
     );

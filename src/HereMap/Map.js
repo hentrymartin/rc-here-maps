@@ -52,13 +52,13 @@ class Map extends Component {
       },
       () => {
         // Enabling zoom and drag events
-        new window.H.mapevents.Behavior(new window.H.mapevents.MapEvents(map));
+        const behaviour = new window.H.mapevents.Behavior(new window.H.mapevents.MapEvents(map));
 
         // This creates the UI controls
         window.H.ui.UI.createDefault(map, mapTypes);
 
         // Send to parent the created map object
-        this.props.onMapLoaded(map);
+        this.props.onMapLoaded(map, behaviour);
       },
     );
   };
