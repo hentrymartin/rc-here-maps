@@ -58,6 +58,6 @@
     "extends": "react-app"
   },
   "author": "hentry.martin",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://bitbucket.org/sixtgoorange/com.sixt.web.react.components#readme"
 }
