@@ -41,13 +41,41 @@ HereMaps.defaultProps = {
   appCode: '',
   useHTTPS: true,
   onMapLoaded: () => {},
+  center: { lng: 13.4, lat: 52.51 },
+  bounds: {},
+  zoom: 10,
 };
 
 HereMaps.propTypes = {
+  /**
+   * Heremaps App ID
+   */
   appId: PropTypes.string,
+  /**
+   * Heremaps App Code
+   */
   appCode: PropTypes.string,
+  /**
+   * If true then works in https
+   */
   useHTTPS: PropTypes.bool,
+  /**
+   * Called when the map is loaded. This returns the map object.
+   */
   onMapLoaded: PropTypes.func,
+  /**
+   *  Center of the map. It should be like this {lat: 12.12, lng: 13}
+   */
+  center: PropTypes.object,
+  /**
+   * Rectangular bounds which restrict the maps viewing port
+   * It should be like this {north: 12, south: 17, east: 10, west: 14}
+   */
+  bounds: PropTypes.object,
+  /**
+   * Zoom level of the map. Defaults to 10.
+   */
+  zoom: PropTypes.number,
 };
 
 export default HereMaps;

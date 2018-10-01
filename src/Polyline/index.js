@@ -2,6 +2,9 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty, isEqual } from './../Utils';
 
+/**
+ * Creates the polyline component on the map
+ */
 class Polyline extends Component {
   constructor(props) {
     super(props);
@@ -77,10 +80,28 @@ Polyline.defaultProps = {
 };
 
 Polyline.propTypes = {
+  /**
+   *  An array of data which will have lat, lng and alt
+   *  for eg: [12, 13, 100, 22, 13, 100]
+   *  12 is latitude, 13 is longitude and 100 is latitude.
+   */
   dataPoints: PropTypes.array,
-  fillColor: PropTypes.string,
+  /**
+   * Color of the polyline. It can be hex or rgba value.
+   */
   strokeColor: PropTypes.string,
+  /**
+   * width of the polyline. Default is 1.
+   */
   lineWidth: PropTypes.number,
+  /**
+   * The miter length as the distance between the inner corner
+   * and the outer corner where two lines meet. The default is 10.
+   */
+  miterLength: PropTypes.number,
+  /**
+   * Called when the polyline is added to the map
+   */
   onPolylineDrawn: PropTypes.func,
 };
 

@@ -1,6 +1,6 @@
 {
-  "name": "rc-here-map",
-  "version": "0.0.1",
+  "name": "rc-here-maps",
+  "version": "1.0.1",
   "description": "React wrapper for Here Maps API",
   "main": "./dist/here-maps.min.js",
   "dependencies": {
@@ -26,6 +26,7 @@
     "prettier": "^1.12.1",
     "react": "^16.0.0-0",
     "react-dev-utils": "^5.0.1",
+    "react-doc-generator": "^1.2.5",
     "react-dom": "^16.0.0-0",
     "sass-loader": "^7.0.1",
     "style-loader": "0.19.0",
@@ -36,7 +37,8 @@
     "test": "npm run test",
     "build": "webpack --config config/webpack.prod.js",
     "watch": "webpack --watch --config config/webpack.dev.js",
-    "format": "prettier \"{src}/**/*.js\" --write"
+    "format": "prettier \"{src}/**/*.js\" --write",
+    "docs": "react-doc-generator ./src -o docs/DOCUMENTATION.md -e Map.js"
   },
   "repository": {
     "type": "git",

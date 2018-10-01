@@ -74,3 +74,7 @@ class MapDemo extends Component {
 
 export default MapDemo;
 ```
+
+## Documentation
+
+You can view the documentation here

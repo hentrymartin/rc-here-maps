@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { isEmpty } from './../Utils';
 import './../HereMaps.scss';
 
-/*
-* Creates dom marker based on the lat and lng
-*/
+/**
+ * Creates dom marker based on the lat and lng
+ */
 class Marker extends Component {
   constructor(props) {
     super(props);
@@ -30,16 +30,16 @@ class Marker extends Component {
     map.removeObject(this.marker);
   }
 
-  /*
-  * Get the dom marker html icon
-  */
+  /**
+   * Get the dom marker html icon
+   */
   getDomMarkerIcon = html => {
     return new window.H.map.DomIcon(html);
   };
 
-  /*
-  * Create marker based on the props from the parent
-  */
+  /**
+   * Create marker based on the props from the parent
+   */
   createMarker = () => {
     if (this.marker) map.removeObject(this.marker);
     const { map, children, lat, lng, draggable } = this.props;
@@ -56,9 +56,9 @@ class Marker extends Component {
     this.marker = marker;
   };
 
-  /*
-  * Update the marker when the dom changes in parent
-  */
+  /**
+   * Update the marker when the dom changes in parent
+   */
   updateMarker = () => {
     const { children } = this.props;
     const htmlEl = ReactDOMServer.renderToStaticMarkup(<div className="rc-marker">{children}</div>);
@@ -66,9 +66,9 @@ class Marker extends Component {
     this.marker.setIcon(icon);
   };
 
-  /*
-  * Update the lat and lng on change
-  */
+  /**
+   * Update the lat and lng on change
+   */
   updatePosition = () => {
     this.marker.setPosition({
       lat: this.props.lat,
@@ -76,9 +76,9 @@ class Marker extends Component {
     });
   };
 
-  /*
-  * Adds event listeners to the map object
-  */
+  /**
+   * Adds event listeners to the map object
+   */
   addEventListeners = () => {
     const { map } = this.props;
 
@@ -93,9 +93,9 @@ class Marker extends Component {
     map.addEventListener('drag', this.onDrag, false);
   };
 
-  /*
-  * Removes the event listener added to the map object
-  */
+  /**
+   * Removes the event listener added to the map object
+   */
 
   removeEventListeners = () => {
     const { map } = this.props;
@@ -104,6 +104,10 @@ class Marker extends Component {
     map.removeEventListener('drag', this.onDragStart, false);
   };
 
+  /**
+   * Trigged on drag start. This disable the normal
+   * map UI behavior like dragging, panning etc.,
+   */
   onDragStart = e => {
     const { target } = e;
     const { behavior } = this.props;
@@ -112,6 +116,10 @@ class Marker extends Component {
     }
   };
 
+  /**
+   * Trigged on drag end. This enable the normal
+   * map UI behavior like dragging, panning etc.,
+   */
   onDragEnd = e => {
     const { target } = e;
     const { behavior } = this.props;
@@ -120,6 +128,10 @@ class Marker extends Component {
     }
   };
 
+  /**
+   * Triggered on drag and this sets the position of
+   * the marker based on the current pointed position
+   */
   onDrag = e => {
     const { target, currentPointer } = e;
     const { map } = this.props;
@@ -148,9 +160,21 @@ Marker.defaultProps = {
 };
 
 Marker.propTypes = {
+  /**
+   * Latitude position of the marker
+   */
   lat: PropTypes.number.isRequired,
+  /**
+   * Longitude position of the marker
+   */
   lng: PropTypes.number.isRequired,
+  /**
+   * Called when the marker is added to the map
+   */
   onMarkerCreated: () => {},
+  /**
+   * If set true, the marker will be draggable. Defaults to false.
+   */
   draggable: PropTypes.bool,
   behavior: PropTypes.object,
 };

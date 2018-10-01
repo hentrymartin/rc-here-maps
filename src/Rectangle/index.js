@@ -2,6 +2,9 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty, isEqual } from './../Utils';
 
+/**
+ * Creates rectange on the map based on the bounds
+ */
 class Rectangle extends Component {
   constructor(props) {
     super(props);
@@ -23,13 +26,16 @@ class Rectangle extends Component {
     map.removeObject(this.rectangle);
   }
 
+  /**
+   *  Get the rect object based on the bounds
+   */
   getGeometry = bounds => {
     return new window.H.geo.Rect(bounds.north, bounds.south, bounds.east, bounds.west);
   };
 
-  /*
-  * Creates the rectangle for the first time
-  */
+  /**
+   * Creates the rectangle for the first time
+   */
   createRectangle = () => {
     const { map, fillColor, strokeColor, lineWidth, bounds } = this.props;
     this.rectangle = new window.H.map.Rect(this.getGeometry(bounds), {
@@ -43,9 +49,9 @@ class Rectangle extends Component {
     map.addObject(this.rectangle);
   };
 
-  /*
-  * Update the rectangle if the bounds
-  */
+  /**
+   * Update the rectangle if the bounds
+   */
   updateRectangle = () => {
     const { bounds } = this.props;
     this.rectangle.setBounds(this.getGeometry(bounds));
@@ -70,10 +76,32 @@ Rectangle.defaultProps = {
 };
 
 Rectangle.propTypes = {
+  /**
+   * Bounds represents a rectangular geographic area defined by the geographic
+   * coordinates of its top-left and bottom-right corners.
+   * {
+   *  north: 22,
+   *  south: 12,
+   *  east: 11,
+   *  west: 10,
+   * }
+   */
   bounds: PropTypes.object.isRequired,
+  /**
+   *  Fillcolor of the rectangle. It can be an Hex value or RGBA value
+   */
   fillColor: PropTypes.string,
+  /**
+   * Stroke color is the border color of the rectangle
+   */
   strokeColor: PropTypes.string,
+  /**
+   * Linewidth of the rectangle. Defaults to 1.
+   */
   lineWidth: PropTypes.number,
+  /**
+   * Called when the rectange is added to the map
+   */
   onRectangleDrawn: PropTypes.func,
 };
 
