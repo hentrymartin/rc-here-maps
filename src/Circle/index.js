@@ -19,6 +19,7 @@ class Circle extends Component {
     // Remove the circle from the map once the component is going
     // to be unmounted
     const { map } = this.props;
+    if (isEmpty(map)) return;
     map.removeObject(this.circle);
   }
 

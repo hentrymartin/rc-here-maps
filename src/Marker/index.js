@@ -20,6 +20,8 @@ class Marker extends Component {
 
   componentWillUnmount() {
     const { map, draggable } = this.props;
+
+    if (isEmpty(map)) return;
     // Remove the events added if draggable
     if (draggable) {
       this.removeEventListeners();

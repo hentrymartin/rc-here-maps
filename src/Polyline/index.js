@@ -19,6 +19,7 @@ class Polyline extends Component {
     // Remove the polyline from the map once the component is going
     // to be unmounted
     const { map } = this.props;
+    if (isEmpty(map)) return;
     map.removeObject(this.polyline);
   }
 

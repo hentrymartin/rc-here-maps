@@ -37,9 +37,11 @@ class Map extends Component {
     const mapTypes = this.platform.createDefaultLayers();
     const element = ReactDOM.findDOMNode(this);
     const { zoom, center } = this.props;
+    const pixelRatio = window.devicePixelRatio || 1;
     const map = this.factory.getHereMap(element, mapTypes.normal.map, {
       zoom,
       center,
+      pixelRatio,
     });
 
     this.setMap(map, mapTypes);

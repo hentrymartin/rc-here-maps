@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HereMap, Marker, Polygon, Polyline, Circle } from './../node_modules/rc-here-maps';
+import { HereMap, Marker, Polygon, Polyline, Circle, Rectangle } from './../node_modules/rc-here-maps';
 import './App.css';
 
 class App extends Component {
@@ -19,10 +19,17 @@ class App extends Component {
       },
       polygonDataPoints: [12, 3, 100, 29, 13, 100, 20, 30, 100],
       polylineDataPoints: [10, 3, 100, 25, 13, 100, 10, 30, 100],
+      rectBounds: {
+        north: 53.1,
+        south: 13.1,
+        east: 43.1,
+        west: 40.1,
+      },
       showPolygon: true,
       showMarker: true,
       showPolyline: true,
       showCircle: true,
+      showRect: true,
     };
   }
 
@@ -41,7 +48,8 @@ class App extends Component {
         showPolygon: false,
         showMarker: false,
         showPolyline: false,
-        showCircle: true,
+        showCircle: false,
+        showRect: true,
       });
     }, 1000);
   }
@@ -65,7 +73,9 @@ class App extends Component {
 
           {this.state.showPolyline && <Polyline dataPoints={this.state.polylineDataPoints} />}
 
-          {this.state.showCircle && <Circle center={this.state.circleCenter} radius={100000} />}
+          {this.state.showCircle && <Circle center={this.state.circleCenter} radius={1000} />}
+
+          {this.state.showRect && <Rectangle bounds={this.state.rectBounds} />}
         </HereMap>
       </div>
     );

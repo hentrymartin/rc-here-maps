@@ -3,5 +3,6 @@ import Marker from './Marker';
 import Polygon from './Polygon';
 import Polyline from './Polyline';
 import Circle from './Circle';
+import Rectangle from './Rectangle';
 
-export { HereMap, Marker, Polygon, Polyline, Circle };
+export { HereMap, Marker, Polygon, Polyline, Circle, Rectangle };
