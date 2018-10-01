@@ -8,7 +8,7 @@ It's pretty easy to install this library in your react app,
 
 `npm install rc-here-map`
 
-#Prerequisite
+### Prerequisite
 
 Copy the following snippet and paste it in your html file,
 
@@ -21,7 +21,7 @@ Copy the following snippet and paste it in your html file,
   <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
 ```
 
-### How to use it
+### Basic Usage
 
 ```javascript
 import React, { Component } from 'react';
@@ -75,6 +75,8 @@ class MapDemo extends Component {
 export default MapDemo;
 ```
 
-## Documentation
+### Documentation
 
-You can view the documentation here
+You can view the documentation [here](https://github.com/hentrymartin/rc-here-maps/blob/master/DOCUMENTATION.md)
+
+Feel free to contribute to this repo by cloning it.
