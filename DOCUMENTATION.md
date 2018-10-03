@@ -55,16 +55,13 @@ Creates dom marker based on the lat and lng
 
 Creates polygon based on the datapoints(which are lat, lng and alt)
 
-| Property   | Type  | Required | Default value               | Description                                       |
-| :--------- | :---- | :------- | :-------------------------- | :------------------------------------------------ |
-| dataPoints | array | no       | &lt;See the source code&gt; | An array of data which will have lat, lng and alt |
-
-for eg: [12, 13, 100, 22, 13, 100]
-12 is latitude, 13 is longitude and 100 is latitude.
-fillColor|string|no|&lt;See the source code&gt;|The filling color in CSS syntax, the default is #FFFFCC. It can be hex or rgba value.
-strokeColor|string|no|&lt;See the source code&gt;|The color of the stroke in CSS syntax, the default is #829.
-lineWidth|number|no|1|width of the line in pixels. Defaults to 1.
-onPolygonDrawn|func|no|&lt;See the source code&gt;|Called when the polygon is added to the map
+| Property       | Type   | Required | Default value               | Description                                                                                                                                |
+| :------------- | :----- | :------- | :-------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| dataPoints     | array  | no       | &lt;See the source code&gt; | An array of data which will have lat, lng and alt. for eg: [12, 13, 100, 22, 13, 100] 12 is latitude, 13 is longitude and 100 is latitude. |
+| fillColor      | string | no       | &lt;See the source code&gt; | The filling color in CSS syntax, the default is #FFFFCC. It can be hex or rgba value.                                                      |
+| strokeColor    | string | no       | &lt;See the source code&gt; | The color of the stroke in CSS syntax, the default is #829.                                                                                |
+| lineWidth      | number | no       | 1                           | width of the line in pixels. Defaults to 1.                                                                                                |
+| onPolygonDrawn | func   | no       | &lt;See the source code&gt; | Called when the polygon is added to the map                                                                                                |
 
 ---
 
@@ -74,19 +71,15 @@ onPolygonDrawn|func|no|&lt;See the source code&gt;|Called when the polygon is ad
 
 Creates the polyline component on the map
 
-| Property   | Type  | Required | Default value               | Description                                       |
-| :--------- | :---- | :------- | :-------------------------- | :------------------------------------------------ |
-| dataPoints | array | no       | &lt;See the source code&gt; | An array of data which will have lat, lng and alt |
-
-for eg: [12, 13, 100, 22, 13, 100]
-12 is latitude, 13 is longitude and 100 is latitude.
-strokeColor|string|no|&lt;See the source code&gt;|Color of the polyline. It can be hex or rgba value.
-lineWidth|number|no|2|width of the polyline. Default is 1.
-miterLength|number|no|10|The miter length as the distance between the inner corner
-and the outer corner where two lines meet. The default is 10.
-onPolylineDrawn|func|no|&lt;See the source code&gt;|Called when the polyline is added to the map
-lineDash||no|&lt;See the source code&gt;|
-lineDashOffset||no|0|
+| Property        | Type   | Required | Default value               | Description                                                                                                                               |
+| :-------------- | :----- | :------- | :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| dataPoints      | array  | no       | &lt;See the source code&gt; | An array of data which will have lat, lng and alt for eg: [12, 13, 100, 22, 13, 100] 12 is latitude, 13 is longitude and 100 is latitude. |
+| strokeColor     | string | no       | &lt;See the source code&gt; | Color of the polyline. It can be hex or rgba value.                                                                                       |
+| lineWidth       | number | no       | 2                           | width of the polyline. Default is 1.                                                                                                      |
+| miterLength     | number | no       | 10                          | The miter length as the distance between the inner corner and the outer corner where two lines meet. The default is 10.                   |
+| onPolylineDrawn | func   | no       | &lt;See the source code&gt; | Called when the polyline is added to the map                                                                                              |
+| lineDash        |        | no       | &lt;See the source code&gt; |
+| lineDashOffset  |        | no       | 0                           |
 
 ---
 
@@ -96,21 +89,13 @@ lineDashOffset||no|0|
 
 Creates rectange on the map based on the bounds
 
-| Property | Type   | Required | Default value               | Description                                                               |
-| :------- | :----- | :------- | :-------------------------- | :------------------------------------------------------------------------ |
-| bounds   | object | no       | &lt;See the source code&gt; | Bounds represents a rectangular geographic area defined by the geographic |
-
-coordinates of its top-left and bottom-right corners.
-{
-north: 22,
-south: 12,
-east: 11,
-west: 10,
-}
-fillColor|string|no|&lt;See the source code&gt;|Fillcolor of the rectangle. It can be an Hex value or RGBA value
-strokeColor|string|no|&lt;See the source code&gt;|Stroke color is the border color of the rectangle
-lineWidth|number|no|1|Linewidth of the rectangle. Defaults to 1.
-onRectangleDrawn|func|no|&lt;See the source code&gt;|Called when the rectange is added to the map
+| Property         | Type   | Required | Default value               | Description                                                                                                                                                            |
+| :--------------- | :----- | :------- | :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bounds           | object | no       | &lt;See the source code&gt; | Bounds represents a rectangular geographic area defined by the geographic coordinates of its top-left and bottom-right corners.{north: 22,south: 12,east: 11,west: 10} |
+| fillColor        | string | no       | &lt;See the source code&gt; | Fillcolor of the rectangle. It can be an Hex value or RGBA value                                                                                                       |
+| strokeColor      | string | no       | &lt;See the source code&gt; | Stroke color is the border color of the rectangle                                                                                                                      |
+| lineWidth        | number | no       | 1                           | Linewidth of the rectangle. Defaults to 1.                                                                                                                             |
+| onRectangleDrawn | func   | no       | &lt;See the source code&gt; | Called when the rectange is added to the map                                                                                                                           |
 
 ---
 
