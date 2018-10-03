@@ -1,6 +1,6 @@
 {
   "name": "rc-here-maps",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "React wrapper for Here Maps API",
   "main": "./dist/here-maps.min.js",
   "dependencies": {
@@ -24,10 +24,10 @@
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "prettier": "^1.12.1",
-    "react": "^16.0.0-0",
+    "react": "16.5.0",
     "react-dev-utils": "^5.0.1",
     "react-doc-generator": "^1.2.5",
-    "react-dom": "^16.0.0-0",
+    "react-dom": "16.5.0",
     "sass-loader": "^7.0.1",
     "style-loader": "0.19.0",
     "url-loader": "0.6.2",

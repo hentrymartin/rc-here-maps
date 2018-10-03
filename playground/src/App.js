@@ -46,9 +46,9 @@ class App extends Component {
         circleCenter: coords,
         polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
         showPolygon: false,
-        showMarker: false,
+        showMarker: true,
         showPolyline: false,
-        showCircle: false,
+        showCircle: true,
         showRect: true,
       });
     }, 1000);
@@ -73,7 +73,9 @@ class App extends Component {
 
           {this.state.showPolyline && <Polyline dataPoints={this.state.polylineDataPoints} />}
 
-          {this.state.showCircle && <Circle center={this.state.circleCenter} radius={1000} />}
+          {this.state.showCircle && (
+            <Circle center={this.state.circleCenter} radius={1000} fillColor="rgba(25, 25, 25, 0.5)" />
+          )}
 
           {this.state.showRect && <Rectangle bounds={this.state.rectBounds} />}
         </HereMap>

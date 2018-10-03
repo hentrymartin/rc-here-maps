@@ -1,6 +1,6 @@
 # RC Here Map
 
-Here Maps provide amazing api's to add map using Javascript. This is a React wrapper for Here Maps API. Right now, this library gives minimal functionalities like creating map and adding objects like marker, polygon, polyline and Circle on top of it.
+Here Maps provide amazing api's to add map using Javascript. This is a React wrapper for Here Maps API. Right now, this library gives functionalities like creating map and adding objects like Marker, Polygon, Polyline, Rectangle and Circle on top of it.
 
 ### How to install it
 
@@ -20,6 +20,10 @@ Copy the following snippet and paste it in your html file,
   <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
 ```
+
+### Demo
+
+You can see the demo of this library [here](https://hentrymartin.github.io/rc-here-maps-example/)
 
 ### Basic Usage
 

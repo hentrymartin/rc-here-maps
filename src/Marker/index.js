@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as ReactDOMServer from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import { isEmpty } from './../Utils';
 import './../HereMaps.scss';
@@ -43,7 +43,6 @@ class Marker extends Component {
   createMarker = () => {
     if (this.marker) map.removeObject(this.marker);
     const { map, children, lat, lng, draggable } = this.props;
-
     const htmlEl = ReactDOMServer.renderToStaticMarkup(<div className="rc-marker">{children}</div>);
     const icon = this.getDomMarkerIcon(htmlEl);
     const marker = new window.H.map.DomMarker({ lat, lng }, { icon });

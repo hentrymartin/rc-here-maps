@@ -12,10 +12,30 @@ module.exports = {
     path: path.resolve(__dirname, './../dist'),
     filename: 'here-maps.min.js',
     library: 'rc-here-maps',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    publicPath: '/dist/',
+    umdNamedDefine: true,
   },
   externals: {
-  'react': 'react', // Case matters here
+    // Don't bundle react or react-dom
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React',
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'ReactDOM',
+      root: 'ReactDOM',
+    },
+    'react-dom/server': {
+      commonjs: 'react-dom/server',
+      commonjs2: 'react-dom/server',
+      amd: 'ReactDOMServer',
+      root: 'ReactDOMServer',
+    },
   },
   module: {
     rules: [
@@ -27,7 +47,6 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
             },
             loader: require.resolve('eslint-loader'),
           },
@@ -41,14 +60,14 @@ module.exports = {
             loader: require.resolve('url-loader'),
             options: {
               limit: 10000,
-              emitFile: false
+              emitFile: false,
             },
           },
           {
             test: /\.(js|jsx|mjs)$/,
             loader: require.resolve('babel-loader'),
             options: {
-              cacheDirectory: true
+              cacheDirectory: true,
             },
           },
           {
