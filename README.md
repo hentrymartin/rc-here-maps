@@ -1,4 +1,4 @@
-# RC Here Map
+# RC Here Maps
 
 Here Maps provide amazing api's to add map using Javascript. This is a React wrapper for Here Maps API. Right now, this library gives functionalities like creating map and adding objects like Marker, Polygon, Polyline, Rectangle and Circle on top of it.
 
@@ -6,7 +6,7 @@ Here Maps provide amazing api's to add map using Javascript. This is a React wra
 
 It's pretty easy to install this library in your react app,
 
-`npm install rc-here-map`
+`npm install rc-here-maps`
 
 ### Prerequisite
 
@@ -51,7 +51,7 @@ class MapDemo extends Component {
   render() {
     return (
       <div className="map-wrapper">
-        <Map appId="YYYY" appCode="XXXX" useHTTPS={false} center={this.center}>
+        <HereMap appId="YYYY" appCode="XXXX" useHTTPS={false} center={this.center}>
           <Marker lat={52.21} lng={48.12}>
             This is a sample marker
           </Marker>
@@ -70,7 +70,7 @@ class MapDemo extends Component {
             lineWidth={3}
             onPolylineDrawn={this.onPolygonDrawn}
           />
-        </Map>
+        </HereMap>
       </div>
     );
   }
