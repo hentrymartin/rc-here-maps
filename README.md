@@ -29,7 +29,7 @@ You can see the demo of this library [here](https://hentrymartin.github.io/rc-he
 
 ```javascript
 import React, { Component } from 'react';
-import { HereMap, Marker, Ployline, Polygon } from 'rc-here-map';
+import { HereMap, Marker, Ployline, Polygon, Circle, Rectangle } from 'rc-here-map';
 
 class MapDemo extends Component {
   constructor(props) {
@@ -39,6 +39,13 @@ class MapDemo extends Component {
       lat: 52.51,
       lng: 13.4,
     };
+
+    this.bounds = {
+      north: 53.1,
+      south: 13.1,
+      east: 43.1,
+      west: 40.1,
+    };
   }
   onPolylineDrawn = () => {
     console.log('polyline drawn');
@@ -46,6 +53,14 @@ class MapDemo extends Component {
 
   onPolygonDrawn = () => {
     console.log('Polygon drawn');
+  };
+
+  onCircleDrawn = () => {
+    console.log('circle drawn');
+  };
+
+  onRectangleDrawn = () => {
+    console.log('rectangle drawn');
   };
 
   render() {
@@ -70,6 +85,21 @@ class MapDemo extends Component {
             lineWidth={3}
             onPolylineDrawn={this.onPolygonDrawn}
           />
+
+          <Circle
+            center={this.center}
+            radius={1000}
+            fillColor="#HexCode"
+            strokeColor="#HexCode"
+            onCircleDrawn={this.onCircleDrawn}
+          />
+
+          <Rectangle
+            bounds={this.bounds}
+            fillColor="#HexCode"
+            strokeColor="#HexCode"
+            onRectangleDrawn={this.onRectangleDrawn}
+          />
         </HereMap>
       </div>
     );
@@ -83,4 +113,4 @@ export default MapDemo;
 
 You can view the documentation [here](https://github.com/hentrymartin/rc-here-maps/blob/master/DOCUMENTATION.md)
 
-Feel free to contribute to this repo by cloning it.
+Feel free to contribute to this repo by raising PR.
