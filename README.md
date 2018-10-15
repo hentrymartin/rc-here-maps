@@ -1,5 +1,11 @@
 # RC Here Maps
 
+![Hackage-Deps](https://img.shields.io/hackage-deps/v/lens.svg)
+
+![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+
+![npm](https://img.shields.io/badge/npm-v1.1.4-green.svg)
+
 Here Maps provide amazing api's to add map using Javascript. This is a React wrapper for Here Maps API. Right now, this library gives functionalities like creating map and adding objects like Marker, Polygon, Polyline, Rectangle and Circle on top of it.
 
 ### How to install it

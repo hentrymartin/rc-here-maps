@@ -17,8 +17,8 @@ class App extends Component {
         lat: 11,
         lng: 8,
       },
-      polygonDataPoints: [12, 3, 100, 29, 13, 100, 20, 30, 100],
-      polylineDataPoints: [10, 3, 100, 25, 13, 100, 10, 30, 100],
+      polygonDataPoints: [12, 3, 100, 29, 13, 100, 20, 30, 100, 12.13, 15.05, 100],
+      polylineDataPoints: [10, 3, 100, 25, 13, 100, 10, 30, 100, 25, 25, 100],
       rectBounds: {
         north: 53.1,
         south: 13.1,
@@ -26,10 +26,10 @@ class App extends Component {
         west: 40.1,
       },
       showPolygon: true,
-      showMarker: true,
-      showPolyline: true,
-      showCircle: true,
-      showRect: true,
+      showMarker: false,
+      showPolyline: false,
+      showCircle: false,
+      showRect: false,
     };
   }
 
@@ -44,12 +44,12 @@ class App extends Component {
         lng: coords.lng,
         center: coords,
         circleCenter: coords,
-        polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
-        showPolygon: false,
-        showMarker: true,
+        // polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
+        showPolygon: true,
+        showMarker: false,
         showPolyline: false,
-        showCircle: true,
-        showRect: true,
+        showCircle: false,
+        showRect: false,
       });
     }, 1000);
   }
@@ -69,7 +69,9 @@ class App extends Component {
             </Marker>
           )}
 
-          {this.state.showPolygon && <Polygon dataPoints={this.state.polygonDataPoints} />}
+          {this.state.showPolygon && (
+            <Polygon dataPoints={this.state.polygonDataPoints} fillColor="rgba(228, 83, 15, 0.3)" />
+          )}
 
           {this.state.showPolyline && <Polyline dataPoints={this.state.polylineDataPoints} />}
 
