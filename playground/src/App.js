@@ -45,14 +45,30 @@ class App extends Component {
         center: coords,
         circleCenter: coords,
         // polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
-        showPolygon: true,
+        showPolygon: false,
         showMarker: false,
         showPolyline: false,
-        showCircle: false,
+        showCircle: true,
         showRect: false,
       });
     }, 1000);
   }
+
+  onClick = () => {
+    console.log('I am clicked');
+  };
+
+  onPolygonClick = () => {
+    console.log('Polygon clicked');
+  };
+
+  onRectClick = () => {
+    console.log('Rectangle clicked');
+  };
+
+  onCircleClicked = () => {
+    console.log('on circle clicked');
+  };
 
   render() {
     return (
@@ -64,22 +80,31 @@ class App extends Component {
           center={this.state.center}
         >
           {this.state.showMarker && (
-            <Marker lat={this.state.lat} lng={this.state.lng} draggable>
+            <Marker lat={this.state.lat} lng={this.state.lng} draggable onClick={this.onClick}>
               Sample marker
             </Marker>
           )}
 
           {this.state.showPolygon && (
-            <Polygon dataPoints={this.state.polygonDataPoints} fillColor="rgba(228, 83, 15, 0.3)" />
+            <Polygon
+              dataPoints={this.state.polygonDataPoints}
+              fillColor="rgba(228, 83, 15, 0.3)"
+              onClick={this.onPolygonClick}
+            />
           )}
 
           {this.state.showPolyline && <Polyline dataPoints={this.state.polylineDataPoints} />}
 
           {this.state.showCircle && (
-            <Circle center={this.state.circleCenter} radius={1000} fillColor="rgba(25, 25, 25, 0.5)" />
+            <Circle
+              center={this.state.circleCenter}
+              radius={1000}
+              fillColor="rgba(25, 25, 25, 0.5)"
+              onClick={this.onCircleClicked}
+            />
           )}
 
-          {this.state.showRect && <Rectangle bounds={this.state.rectBounds} />}
+          {this.state.showRect && <Rectangle bounds={this.state.rectBounds} onClick={this.onRectClick} />}
         </HereMap>
       </div>
     );

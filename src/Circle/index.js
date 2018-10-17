@@ -20,6 +20,7 @@ class Circle extends Component {
     // to be unmounted
     const { map } = this.props;
     if (isEmpty(map)) return;
+    this.circle.removeEventListener('tap', this.props.onClick);
     map.removeObject(this.circle);
   }
 
@@ -35,6 +36,7 @@ class Circle extends Component {
         lineWidth,
       },
     });
+    this.circle.addEventListener('tap', this.props.onClick);
     this.props.onCircleDrawn(this.circle);
     map.addObject(this.circle);
   };
@@ -65,15 +67,38 @@ Circle.defaultProps = {
   strokeColor: '#829',
   lineWidth: 2,
   onCircleDrawn: () => {},
+  onClick: () => {},
 };
 
 Circle.propTypes = {
+  /**
+   * Center of the circle
+   */
   center: PropTypes.object.isRequired,
+  /**
+   * Radius of the circle
+   */
   radius: PropTypes.number,
+  /**
+   * Fill color of the circle
+   */
   fillColor: PropTypes.string,
+  /**
+   * Border color or stroke color of the circle
+   */
   strokeColor: PropTypes.string,
+  /**
+   * line width of the circle
+   */
   lineWidth: PropTypes.number,
+  /**
+   * Callback called after circle is drawn
+   */
   onCircleDrawn: PropTypes.func,
+  /**
+   * Click handler for Reactange
+   */
+  onClick: PropTypes.func,
 };
 
 export default Circle;

@@ -23,6 +23,7 @@ class Rectangle extends Component {
     // to be unmounted
     const { map } = this.props;
     if (isEmpty(map)) return;
+    this.rectangle.removeEventListener('tap', this.props.onClick);
     map.removeObject(this.rectangle);
   }
 
@@ -45,6 +46,7 @@ class Rectangle extends Component {
         lineWidth,
       },
     });
+    this.rectangle.addEventListener('tap', this.props.onClick);
     this.props.onRectangleDrawn(this.rectangle);
     map.addObject(this.rectangle);
   };
@@ -73,6 +75,7 @@ Rectangle.defaultProps = {
   strokeColor: '#829',
   lineWidth: 1,
   onRectangleDrawn: () => {},
+  onClick: () => {},
 };
 
 Rectangle.propTypes = {
@@ -103,6 +106,10 @@ Rectangle.propTypes = {
    * Called when the rectange is added to the map
    */
   onRectangleDrawn: PropTypes.func,
+  /**
+   * Click handler for Reactange
+   */
+  onClick: PropTypes.func,
 };
 
 export default Rectangle;
