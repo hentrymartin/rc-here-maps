@@ -23,6 +23,7 @@ class Polygon extends Component {
     // to be unmounted
     const { map } = this.props;
     if (isEmpty(map)) return;
+    this.polygon.removeEventListener('tap', this.props.onClick);
     map.removeObject(this.polygon);
   }
 
@@ -46,6 +47,7 @@ class Polygon extends Component {
         lineWidth,
       },
     });
+    this.polygon.addEventListener('tap', this.props.onClick);
     this.props.onPolygonDrawn(this.polygon);
     map.addObject(this.polygon);
   };
@@ -76,6 +78,7 @@ Polygon.defaultProps = {
   strokeColor: '#829',
   lineWidth: 1,
   onPolygonDrawn: () => {},
+  onClick: () => {},
 };
 
 Polygon.propTypes = {
@@ -101,6 +104,10 @@ Polygon.propTypes = {
    * Called when the polygon is added to the map
    */
   onPolygonDrawn: PropTypes.func,
+  /**
+   * Click handler for Polygon
+   */
+  onClick: PropTypes.func,
 };
 
 export default Polygon;

@@ -26,7 +26,7 @@ class Marker extends Component {
     if (draggable) {
       this.removeEventListeners();
     }
-
+    this.marker.removeEventListener('tap', this.props.onClick);
     map.removeObject(this.marker);
   }
 
@@ -43,9 +43,12 @@ class Marker extends Component {
   createMarker = () => {
     if (this.marker) map.removeObject(this.marker);
     const { map, children, lat, lng, draggable } = this.props;
-    const htmlEl = ReactDOMServer.renderToStaticMarkup(<div className="rc-marker">{children}</div>);
+    const htmlEl = ReactDOMServer.renderToStaticMarkup(
+      React.createElement('div', { className: 'rc-marker' }, children),
+    );
     const icon = this.getDomMarkerIcon(htmlEl);
     const marker = new window.H.map.DomMarker({ lat, lng }, { icon });
+    marker.addEventListener('tap', this.props.onClick);
     if (draggable) {
       marker.draggable = true;
       this.addEventListeners();
@@ -154,6 +157,7 @@ Marker.defaultProps = {
   lat: 0,
   lng: 0,
   onMarkerCreated: () => {},
+  onClick: () => {},
   draggable: false,
   behavior: {},
 };
@@ -175,6 +179,10 @@ Marker.propTypes = {
    * If set true, the marker will be draggable. Defaults to false.
    */
   draggable: PropTypes.bool,
+  /**
+   * Click handler for marker
+   */
+  onClick: PropTypes.func,
   behavior: PropTypes.object,
 };
 
