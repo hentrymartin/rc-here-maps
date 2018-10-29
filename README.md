@@ -34,7 +34,7 @@ You can see the demo of this library [here](https://hentrymartin.github.io/rc-he
 
 ```javascript
 import React, { Component } from 'react';
-import { HereMap, Marker, Ployline, Polygon, Circle, Rectangle } from 'rc-here-map';
+import { HereMap, Marker, Polyline, Polygon, Circle, Rectangle } from 'rc-here-maps';
 
 class MapDemo extends Component {
   constructor(props) {
