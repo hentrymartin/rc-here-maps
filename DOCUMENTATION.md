@@ -17,7 +17,7 @@
 
 **src/HereMap/index.js**
 
-### 1. HereMaps
+### 2. HereMaps
 
 | Property    | Type   | Required | Default value               | Description                                                     |
 | :---------- | :----- | :------- | :-------------------------- | :-------------------------------------------------------------- |
@@ -26,16 +26,16 @@
 | useHTTPS    | bool   | no       | true                        | If true then works in https                                     |
 | onMapLoaded | func   | no       | &lt;See the source code&gt; | Called when the map is loaded. This returns the map object.     |
 | center      | object | no       | &lt;See the source code&gt; | Center of the map. It should be like this {lat: 12.12, lng: 13} |
-| bounds      | object | no       | &lt;See the source code&gt; | Rectangular bounds which restrict the maps viewing port         |
+| bounds      | object | no       | &lt;See the source code&gt; | Rectangular bounds which restrict the maps viewing port It should be like this {north: 12, south: 17, east: 10, west: 14}
+zoom|number|no|10|Zoom level of the map. Defaults to 10.        |
 
-It should be like this {north: 12, south: 17, east: 10, west: 14}
-zoom|number|no|10|Zoom level of the map. Defaults to 10.
+
 
 ---
 
 **src/Marker/index.js**
 
-### 1. Marker
+### 3. Marker
 
 Creates dom marker based on the lat and lng
 
@@ -51,7 +51,7 @@ Creates dom marker based on the lat and lng
 
 **src/Polygon/index.js**
 
-### 1. Polygon
+### 4. Polygon
 
 Creates polygon based on the datapoints(which are lat, lng and alt)
 
@@ -67,7 +67,7 @@ Creates polygon based on the datapoints(which are lat, lng and alt)
 
 **src/Polyline/index.js**
 
-### 1. Polyline
+### 5. Polyline
 
 Creates the polyline component on the map
 
@@ -85,7 +85,7 @@ Creates the polyline component on the map
 
 **src/Rectangle/index.js**
 
-### 1. Rectangle
+### 6. Rectangle
 
 Creates rectange on the map based on the bounds
 
