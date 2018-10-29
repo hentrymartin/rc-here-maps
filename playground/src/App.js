@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HereMap, Marker, Polygon, Polyline, Circle, Rectangle } from './../node_modules/rc-here-maps';
+import { HereMap, Marker, Polygon, Polyline, Circle, Rectangle, PathFinder } from './../node_modules/rc-here-maps';
 import './App.css';
 
 class App extends Component {
@@ -105,6 +105,7 @@ class App extends Component {
           )}
 
           {this.state.showRect && <Rectangle bounds={this.state.rectBounds} onClick={this.onRectClick} />}
+          <PathFinder />
         </HereMap>
       </div>
     );

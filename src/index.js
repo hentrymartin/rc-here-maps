@@ -4,5 +4,6 @@ import Polygon from './Polygon';
 import Polyline from './Polyline';
 import Circle from './Circle';
 import Rectangle from './Rectangle';
+import PathFinder from './PathFinder';
 
-export { HereMap, Marker, Polygon, Polyline, Circle, Rectangle };
+export { HereMap, Marker, Polygon, Polyline, Circle, Rectangle, PathFinder };
