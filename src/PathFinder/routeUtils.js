@@ -17,7 +17,7 @@ function addRouteShapeToMap(map, route, style) {
     // Add the polyline to the map
     map.addObject(polyline);
     // And zoom to its bounding rectangle
-    map.setViewBounds(polyline.getBounds(), true);
+    // map.setViewBounds(polyline.getBounds(), true);
 }
 
 
