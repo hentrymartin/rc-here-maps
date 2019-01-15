@@ -115,11 +115,12 @@ class App extends Component {
           <PathFinder
             waypoints={[
               { lat: 52.5160, lng: 13.3779 },
-              { lat: 52.5180, lng: 13.4062 }
+              { lat: 52.5180, lng: 13.4062 },
+              { lat: 52.5190, lng: 13.4162 },
             ]}
             style={{
-              lineWidth: 4,
-              strokeColor: 'rgba(200, 200, 0, 0.7)'
+              lineWidth: 10,
+              strokeColor: 'rgba(220, 220, 0, 0.9)'
             }}
           />
         </HereMap>

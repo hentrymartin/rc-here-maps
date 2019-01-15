@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from '../Utils';
-import { addRouteShapeToMap, waypointsToRouteParams } from './routeUtils';
-
 class PathFinder extends Component {
   constructor(props) {
     super(props);
     this.router = null;
-    this.state = {};
+    this.path = null;
+  }
+
+  componentWillUnmount() {
+    const { map } = this.props;
+    if (isEmpty(map)) return;
+    map.removeObject(this.path);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,8 +28,46 @@ class PathFinder extends Component {
     this.router = router;
   };
 
+  /**
+   * Creates a H.map.Polyline from the shape of the route and adds it to the map.
+   * @param {Object} route A route as received from the H.service.RoutingService
+   */
+  createPath(route) {
+    if (this.path) map.removeObject(this.path);
+
+    const { map, style } = this.props;
+    const strip = new window.H.geo.Strip();
+    const routeShape = route.shape;
+
+    routeShape.forEach(function (point) {
+      var parts = point.split(',');
+      strip.pushLatLngAlt(parts[0], parts[1]);
+    });
+
+    const path = new window.H.map.Polyline(strip, { style });
+  
+    map.addObject(path);
+    this.props.onPathCreated(path);
+    this.route = path;
+  }
+
+  /**
+   * Turn an array of objects with { lat, lng } into an object with { waypointN }
+   * for use in routing params.
+   * @param {Object[]} waypoints Array of waypoints ({lat, lng})
+   */
+  waypointsToRouteParams(waypoints) {
+    let params = {};
+    waypoints.forEach((wp, index) => {
+      const key = `waypoint${index}`;
+      params[key] = `${wp.lat},${wp.lng}`;
+    });
+
+    return params;
+  }
+
   render() {
-    const routeRequestWaypoints = waypointsToRouteParams(this.props.waypoints);
+    const routeRequestWaypoints = this.waypointsToRouteParams(this.props.waypoints);
     const routeRequestParams = {
       mode: this.props.mode,
       representation: this.props.representation,
@@ -42,7 +84,7 @@ class PathFinder extends Component {
         routeRequestParams,
         (result) => {
           if(result.response && result.response.route[0]) {
-            addRouteShapeToMap(this.props.map, result.response.route[0], this.props.style);
+            this.createPath(result.response.route[0]);
           }
         },
         (error) => console.error(error.message),
@@ -62,6 +104,7 @@ PathFinder.defaultProps = {
   avoidLinks: '',
   avoidSeasonalClosures: true,
   alternatives: 1,
+  onPathCreated: () => {},
   style: {
     lineWidth: 4,
     strokeColor: 'rgba(0, 128, 255, 0.7)'
@@ -71,19 +114,16 @@ PathFinder.defaultProps = {
 PathFinder.propTypes = {
   mode: PropTypes.string,
   representation: PropTypes.string,
-  routerattributes: PropTypes.string,
+  routeattributes: PropTypes.string,
   maneuverattributes: PropTypes.string,
   waypoints: PropTypes.arrayOf(PropTypes.shape({
     lat: PropTypes.number,
     lng: PropTypes.number,
   })),
+  avoidLinks: PropTypes.string,
+  avoidSeasonalClosures: PropTypes.bool,
   alternatives: PropTypes.number,
-  viewBounds: PropTypes.shape({
-    north: PropTypes.number,
-    south: PropTypes.number,
-    east: PropTypes.number,
-    west: PropTypes.number,
-  }),
+  onPathCreated: PropTypes.func,
   style: PropTypes.object,
 };
 
