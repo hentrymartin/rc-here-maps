@@ -9,27 +9,29 @@ class HereMaps extends PureComponent {
     this.state = {
       map: {},
       behavior: {},
+      factory: null,
     };
   }
 
-  onMapLoaded = (map, behavior) => {
+  onMapLoaded = (map, behavior, factory) => {
     this.setState({
       map,
       behavior,
+      factory,
     });
 
     this.props.onMapLoaded(map);
   };
 
   render() {
-    const { map, behavior } = this.state;
+    const { map, behavior, factory } = this.state;
     const { children } = this.props;
     return (
       <div className="here-map-container">
         <Map {...this.props} onMapLoaded={this.onMapLoaded} />
         {React.Children.map(children, child => {
           if (!child) return null;
-          return React.cloneElement(child, { map, behavior });
+          return React.cloneElement(child, { map, behavior, factory });
         })}
       </div>
     );

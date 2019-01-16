@@ -60,7 +60,7 @@ class Map extends Component {
         window.H.ui.UI.createDefault(map, mapTypes);
 
         // Send to parent the created map object
-        this.props.onMapLoaded(map, behaviour);
+        this.props.onMapLoaded(map, behaviour, this.factory);
       },
     );
   };
