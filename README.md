@@ -34,7 +34,7 @@ You can see the demo of this library [here](https://hentrymartin.github.io/rc-he
 
 ```javascript
 import React, { Component } from 'react';
-import { HereMap, Marker, Polyline, Polygon, Circle, Rectangle } from 'rc-here-maps';
+import { HereMap, Marker, Polyline, Polygon, Circle, Rectangle, PathFinder } from 'rc-here-maps';
 
 class MapDemo extends Component {
   constructor(props) {
@@ -104,6 +104,15 @@ class MapDemo extends Component {
             fillColor="#HexCode"
             strokeColor="#HexCode"
             onRectangleDrawn={this.onRectangleDrawn}
+          />
+
+          <PathFinder waypoints={[{ lat: 52.516, lng: 13.3779 }, { lat: 52.5206, lng: 13.3862 }]} />
+          <PathFinder
+            waypoints={[{ lat: 52.516, lng: 13.3779 }, { lat: 52.518, lng: 13.4062 }, { lat: 52.519, lng: 13.4162 }]}
+            style={{
+              lineWidth: 10,
+              strokeColor: 'rgba(220, 220, 0, 0.9)',
+            }}
           />
         </HereMap>
       </div>

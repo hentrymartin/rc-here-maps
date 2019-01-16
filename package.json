@@ -1,6 +1,6 @@
 {
   "name": "rc-here-maps",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "description": "React wrapper for Here Maps API",
   "main": "./dist/here-maps.min.js",
   "dependencies": {
