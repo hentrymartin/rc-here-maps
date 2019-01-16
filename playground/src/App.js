@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HereMap, Marker, Polygon, Polyline, Circle, Rectangle, PathFinder } from './../node_modules/rc-here-maps';
+import { HereMap, Marker, Polygon, Polyline, Circle, Rectangle, PathFinder } from 'rc-here-maps';
 import './App.css';
 
 class App extends Component {
@@ -105,7 +105,24 @@ class App extends Component {
           )}
 
           {this.state.showRect && <Rectangle bounds={this.state.rectBounds} onClick={this.onRectClick} />}
-          <PathFinder />
+
+          <PathFinder
+            waypoints={[
+              { lat: 52.5160, lng: 13.3779 },
+              { lat: 52.5206, lng: 13.3862 }
+            ]}
+          />
+          <PathFinder
+            waypoints={[
+              { lat: 52.5160, lng: 13.3779 },
+              { lat: 52.5180, lng: 13.4062 },
+              { lat: 52.5190, lng: 13.4162 },
+            ]}
+            style={{
+              lineWidth: 10,
+              strokeColor: 'rgba(220, 220, 0, 0.9)'
+            }}
+          />
         </HereMap>
       </div>
     );
