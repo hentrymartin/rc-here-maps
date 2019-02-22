@@ -49,6 +49,8 @@ class Marker extends Component {
     const icon = this.getDomMarkerIcon(htmlEl);
     const marker = new window.H.map.DomMarker({ lat, lng }, { icon });
     marker.addEventListener('tap', this.props.onClick);
+    marker.addEventListener('pointerenter', this.props.onMouseEnter);
+    marker.addEventListener('pointerleave', this.props.onMouseLeave);
     if (draggable) {
       marker.draggable = true;
       this.addEventListeners();
@@ -160,6 +162,8 @@ Marker.defaultProps = {
   onClick: () => {},
   draggable: false,
   behavior: {},
+  onMouseEnter: () => {},
+  onMouseLeave: () => {},
 };
 
 Marker.propTypes = {
@@ -184,6 +188,14 @@ Marker.propTypes = {
    */
   onClick: PropTypes.func,
   behavior: PropTypes.object,
+  /**
+   * This method will be called when mouse enters the marker
+   */
+  onMouseEnter: PropTypes.func,
+  /**
+   * This method will be called when mouse leaves the marker
+   */
+  onMouseLeave: PropTypes.func,
 };
 
 export default Marker;
