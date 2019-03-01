@@ -30,6 +30,7 @@ class App extends Component {
       showPolyline: false,
       showCircle: false,
       showRect: false,
+      showPopover: false,
     };
   }
 
@@ -46,7 +47,7 @@ class App extends Component {
         circleCenter: coords,
         // polygonDataPoints: [10, 3, 100, 20, 13, 100, 2, 30, 100],
         showPolygon: false,
-        showMarker: false,
+        showMarker: true,
         showPolyline: false,
         showCircle: true,
         showRect: false,
@@ -70,6 +71,12 @@ class App extends Component {
     console.log('on circle clicked');
   };
 
+  onTogglePopover = showPopover => {
+    this.setState({
+      showPopover,
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -80,8 +87,16 @@ class App extends Component {
           center={this.state.center}
         >
           {this.state.showMarker && (
-            <Marker lat={this.state.lat} lng={this.state.lng} draggable onClick={this.onClick}>
+            <Marker
+              lat={this.state.lat}
+              lng={this.state.lng}
+              draggable
+              onClick={this.onClick}
+              onMouseEnter={this.onTogglePopover.bind(this, true)}
+              onMouseLeave={this.onTogglePopover.bind(this, false)}
+            >
               Sample marker
+              {this.state.showPopover && <div className="pop-over">This is pop over</div>}
             </Marker>
           )}
 
@@ -106,21 +121,12 @@ class App extends Component {
 
           {this.state.showRect && <Rectangle bounds={this.state.rectBounds} onClick={this.onRectClick} />}
 
+          <PathFinder waypoints={[{ lat: 52.516, lng: 13.3779 }, { lat: 52.5206, lng: 13.3862 }]} />
           <PathFinder
-            waypoints={[
-              { lat: 52.5160, lng: 13.3779 },
-              { lat: 52.5206, lng: 13.3862 }
-            ]}
-          />
-          <PathFinder
-            waypoints={[
-              { lat: 52.5160, lng: 13.3779 },
-              { lat: 52.5180, lng: 13.4062 },
-              { lat: 52.5190, lng: 13.4162 },
-            ]}
+            waypoints={[{ lat: 52.516, lng: 13.3779 }, { lat: 52.518, lng: 13.4062 }, { lat: 52.519, lng: 13.4162 }]}
             style={{
               lineWidth: 10,
-              strokeColor: 'rgba(220, 220, 0, 0.9)'
+              strokeColor: 'rgba(220, 220, 0, 0.9)',
             }}
           />
         </HereMap>
